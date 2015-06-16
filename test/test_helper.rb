@@ -7,16 +7,7 @@ require "pry"
 
 require "roger_sassc"
 
+require File.dirname(__FILE__) + '/helpers/fixture_helper'
+
 RogerSassc.append_path "test/fixtures"
 
-module FixtureHelper
-  FIXTURE_ROOT = File.expand_path(File.join(File.dirname(__FILE__), "fixtures"))
-
-  def fixture(path)
-    File.read(fixture_path(path))
-  end
-
-  def fixture_path(path)
-    File.join(FIXTURE_ROOT, path)
-  end
-end

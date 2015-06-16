@@ -3,6 +3,7 @@ require "fileutils"
 require "./lib/roger_sassc/processor"
 
 module RogerSassc
+  # Test the processor
   class TestProcessor < ::Test::Unit::TestCase
     include FixtureHelper
 

@@ -3,6 +3,7 @@ require "roger/resolver"
 require "rack"
 
 module RogerSassc
+  # Rack Middleware for Roger sass
   class Middleware
     def initialize(app, options = {})
       @app = app
@@ -14,7 +15,7 @@ module RogerSassc
     end
 
     def call(env)
-      url = ::Rack::Utils.unescape(env["PATH_INFO"].to_s).sub(/^\//, "")
+      url = ::Rack::Utils.unescape(env["PATH_INFO"].to_s).sub(%r{^/}, "")
 
       if url.end_with?(".css") && scss_path = resolve_url(url)
         # Convert the url to an absolute path,

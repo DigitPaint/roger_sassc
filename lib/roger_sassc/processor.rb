@@ -5,11 +5,12 @@ require "fileutils"
 require "pathname"
 
 module RogerSassc
+  # The Roger Processor for LibSass
   class Processor < ::Roger::Release::Processors::Base
     def initialize(options = {})
       @options = {
         match: ["stylesheets/**/*.scss"],
-        skip: [/\/_.*\.scss\Z/],
+        skip: [%r{/_.*\.scss\Z}],
         load_paths: RogerSassc.load_paths
       }.update(options)
     end
@@ -32,11 +33,11 @@ module RogerSassc
 
       files.each do |f|
         # Doing skip by hand, so that we can clean the skipped ones
-        if !skip.detect { |r| r.match(f) }
-          release.log(self, "Processing: #{f}")
-          # Compile SCSS
-          compile_file(f)
-        end
+        next if skip.detect { |r| r.match(f) }
+
+        release.log(self, "Processing: #{f}")
+        # Compile SCSS
+        compile_file(f)
       end
 
       # Remove source file
