@@ -7,7 +7,7 @@ module RogerSassc
     include FixtureHelper
 
     def setup
-      @app =  Proc.new { [200, {}, ["YAM"]] } # Yet another middleware
+      @app =  proc { [200, {}, ["YAM"]] } # Yet another middleware
       @middleware = Middleware.new @app
 
       @request = Rack::MockRequest.new(@middleware)

@@ -9,6 +9,7 @@ require "roger_sassc"
 
 RogerSassc.append_path "test/fixtures"
 
+# Fixture helper for tests
 module FixtureHelper
   FIXTURE_ROOT = File.expand_path(File.join(File.dirname(__FILE__), "fixtures"))
 

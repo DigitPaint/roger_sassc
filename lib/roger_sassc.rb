@@ -1,5 +1,6 @@
 require "roger_sassc/version"
 
+# The RogerSassc namespace
 module RogerSassc
   DEFAULT_LOAD_PATHS = ["html/stylesheets", "bower_components"]
 
@@ -7,7 +8,7 @@ module RogerSassc
     attr_accessor :load_paths
 
     def append_path(path)
-      if load_paths == nil
+      if load_paths.nil?
         self.load_paths = DEFAULT_LOAD_PATHS.dup
         # Legacy reasons stuff for gems etc.
         if defined?(Sass.load_paths)
