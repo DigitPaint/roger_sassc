@@ -5,6 +5,6 @@
 		"general.scss",
 		"src/_variables.scss"
 	],
-	"mappings": "AAEA,AACE,SADO,CACP,cAAc,CAAC;EACb,KAAK,ECJD,IAAI,GDKT",
-	"names": []
+	"names": [],
+	"mappings": "AAEA,AACE,SADO,CACP,cAAc,CAAC;EACb,KAAK,ECJD,IAAI,GDKT"
 }
