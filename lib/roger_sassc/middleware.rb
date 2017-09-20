@@ -17,11 +17,15 @@ module RogerSassc
 
       defaults = {
         load_paths: RogerSassc.load_paths,
-        source_map: true,
-        source_map_embed: true
+        source_map: true
       }
 
       @options = defaults.update(options)
+
+      # If the sourcemap is embedded, the content of the source must
+      # be embedded, because the paths to the sources will not be correct,
+      # and the browser will not be able to load the source.
+      @options[:source_map_contents] = true if @options[:source_map_embed]
     end
 
     def call(env)
@@ -58,7 +62,7 @@ module RogerSassc
       url = url.gsub(/.map\Z/, "")
 
       # A .css file is requested in the browser
-      url = url[0..-4] + "scss"
+      url.gsub!(/\.css$/, ".scss")
 
       # Use the resolver to translate urls to file paths
       # returns nill when no file is found via url
@@ -68,10 +72,10 @@ module RogerSassc
     def create_scss_engine(scss_path)
       # Supply the filename for load path resolving
       @options[:filename] = scss_path.to_s
-      if @options[:source_map] || @options[:source_map_embed]
-        @options[:source_map_file] = scss_path.to_s + ".map"
 
-        @options[:source_map] = true
+      # Set a sourcemap file if the sourcemap is not embedded
+      if @options[:source_map] && !@options[:source_map_embed]
+        @options[:source_map_file] = scss_path.to_s.gsub(/\.scss$/, ".css.map")
       end
 
       ::SassC::Engine.new(File.read(scss_path), @options)

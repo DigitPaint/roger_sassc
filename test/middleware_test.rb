@@ -10,7 +10,7 @@ module RogerSassc
     include FixtureHelper
 
     def setup
-      setup_app(source_map: false, source_map_embed: false)
+      setup_app(source_map: false)
     end
 
     def teardown
@@ -60,7 +60,7 @@ module RogerSassc
     end
 
     def test_inline_source_map
-      setup_app(source_map: true)
+      setup_app(source_map: true, source_map_embed: true)
 
       path = fixture_path "general.scss"
       expected_css = fixture "output_with_map.css"
