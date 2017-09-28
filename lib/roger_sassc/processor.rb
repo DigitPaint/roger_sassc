@@ -48,11 +48,16 @@ module RogerSassc
 
     def compile_file(path)
       @options[:filename] = path.to_s
-      scss = File.read(path)
-
-      File.open(path.gsub(/\.scss$/, ".css"), "w+") do |file|
-        file.write(::SassC::Engine.new(scss, @options).render)
+      if @options[:source_map]
+        @options[:source_map_file] = path.gsub(/\.scss$/, ".css.map")
+        @options[:source_map_contents] = true
       end
+
+      scss = File.read(path)
+      engine = ::SassC::Engine.new(scss, @options)
+
+      File.write(path.gsub(/\.scss$/, ".css"), engine.render)
+      File.write(path.gsub(/\.scss$/, ".css.map"), engine.source_map) if @options[:source_map]
     end
   end
 end
