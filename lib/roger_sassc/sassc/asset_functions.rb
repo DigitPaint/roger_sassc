@@ -1,4 +1,6 @@
 require "sassc"
+require "base64"
+require "mime/types"
 require "digest"
 
 module RogerSassc
@@ -19,6 +21,20 @@ module RogerSassc
         end
 
         ::SassC::Script::String.new("url(#{finger_printed_path})", :identifier)
+      end
+
+      def inline_base64(path)
+        file = find_file(path)
+
+        if File.exist?(file)
+          encoded_file = Base64.encode64(File.open(file, "rb").read)
+          mime_type = MIME::Types.type_for(File.basename(file)).first
+          base64_string = "data:#{mime_type};base64,#{encoded_file}"
+        else
+          base64_string = path.value
+        end
+
+        ::SassC::Script::String.new("url(\"#{base64_string}\")", :identifier)
       end
 
       private

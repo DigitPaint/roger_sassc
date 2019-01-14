@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "sassc", "~> 1.11.4"
   spec.add_dependency "roger", "~> 1.0"
+  spec.add_dependency "mime-types", ["~> 2.2"]
   spec.add_dependency "rack"
 
   spec.add_development_dependency "rake", "~> 10.0"

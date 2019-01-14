@@ -48,6 +48,13 @@ div {
       # rubocop:enable LineLength
     end
 
+    def test_inline_base_absolute_path
+      scss_path = "test/fixtures/asset_functions/inline_base_absolute_path.scss"
+      engine = get_engine_for(scss_path)
+
+      assert_match 'background-image: url("data:image/svg+xml;base64,', engine.render
+    end
+
     private
 
     def get_engine_for(scss_path)
