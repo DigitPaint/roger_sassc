@@ -2,7 +2,8 @@
 Error: Invalid CSS after "...ckground: #fff;": expected "}", was ""
         on line 2 of test/fixtures/errors/syntax.scss
 >>   background: #fff;
-   --------------------^
+
+   -------------------^
 
 
 Load paths:
@@ -12,4 +13,4 @@ Load paths:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: 'Error: Invalid CSS after "...ckground: #fff;": expected "}", was ""\A        on line 2 of test/fixtures/errors/syntax.scss\A>>   background: #fff;\A   --------------------^\A'; }
+  content: 'Error: Invalid CSS after "...ckground: #fff;": expected "}", was ""\A        on line 2 of test/fixtures/errors/syntax.scss\A>>   background: #fff;\A\A   -------------------^\A'; }
