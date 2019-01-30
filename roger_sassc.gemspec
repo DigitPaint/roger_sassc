@@ -18,10 +18,10 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "sassc", "~> 1.11.4"
+  spec.add_dependency "rake", "~> 12.3.2"
   spec.add_dependency "roger", "~> 1.0"
   spec.add_dependency "rack"
 
-  spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "mocha", "~> 1.1.0"
   spec.add_development_dependency "test-unit", "~> 3.1.2"
   spec.add_development_dependency "simplecov", "~> 0.10.0"
